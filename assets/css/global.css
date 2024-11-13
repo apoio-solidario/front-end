@@ -1,0 +1,125 @@
+:root {
+  /* Color Palette */
+  --color-background: #ffffff;
+  --color-surface: #f7f7f7;
+  --color-primary: #42a3da;
+  --color-primary-light: #99ddff;
+  --color-secondary: #559a63;
+  --color-secondary: #9abc6b;
+  --color-accent: #e6683b;
+
+  /* Text Color Palette */
+  --color-text-primary: #333333;
+  --color-text-secondary: #666666;
+
+  /* Border Color Palette */
+  --color-border: #e0e0e0;
+
+  /* Typography */
+  --font-size: 16px;
+  --font-size-large: 1.25rem;
+  --font-size-small: 0.875rem;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Radius */
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 12px;
+
+  /* Shadows */
+  --shadow-small: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-large: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+  /* Transition Durations */
+  --transition-fast: 0.15s;
+  --transition-normal: 0.3s;
+  --transition-slow: 0.5s;
+}
+
+:root[data-theme="dark"] {
+  /* Color Palette */
+  --color-background: #121212;
+  --color-surface: #1e1e1e;
+  --color-primary: #73c9ff;
+  --color-primary-light: #cceeff;
+  --color-secondary: #77c488;
+  --color-secondary-light: #b6e39f;
+  --color-accent: #ff8a65;
+
+  /* Text Color Palette */
+  --color-text-primary: #e0e0e0;
+  --color-text-secondary: #b0b0b0;
+
+  /* Border Color Palette */
+  --color-border: #333333;
+
+  /* Shadows */
+  --shadow-small: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-large: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Global Styles */
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: var(--font-size);
+  background-color: var(--color-background);
+  position: relative;
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.35s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-text-primary);
+  margin-top: 0;
+}
+
+p {
+  color: var(--color-text-secondary);
+}
+
+button {
+  font-family: var(--font-family-sans);
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  box-shadow: var(--shadow-small);
+  transition: background-color var(--transition-normal);
+}
+
+button:hover {
+  background-color: var(--color-secondary);
+}
+
+a {
+  text-decoration: none;
+}
