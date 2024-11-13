@@ -1,7 +1,5 @@
 # Apoio Solidário
 
-## Introdução
-
 Esse projeto é uma aplicação desenvolvida com `VueJs (NuxtJs)` projetada para conectar instituições sem fins lucrativos (ONGs) a potenciais doadores.
 
 ## Tecnologias
