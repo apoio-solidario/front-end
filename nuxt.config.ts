@@ -7,4 +7,5 @@ export default defineNuxtConfig({
   devServer: {
     port: 4312,
   },
+  css: ["~/assets/css/global.css"],
 });
