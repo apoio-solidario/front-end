@@ -11,4 +11,7 @@ export default defineNuxtConfig({
   imports: {
     autoImport: false,
   },
+  runtimeConfig: {
+    AS_API: "",
+  },
 });
