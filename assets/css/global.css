@@ -11,6 +11,7 @@
   /* Text Color Palette */
   --color-text-primary: #333333;
   --color-text-secondary: #666666;
+  --color-text-accent: #fff;
 
   /* Border Color Palette */
   --color-border: #e0e0e0;
@@ -23,14 +24,15 @@
   /* Spacing */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
+  --spacing-sm-2: 12px;
   --spacing-md: 16px;
   --spacing-lg: 24px;
   --spacing-xl: 32px;
 
   /* Radius */
-  --border-radius-small: 4px;
-  --border-radius-medium: 8px;
-  --border-radius-large: 12px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
 
   /* Shadows */
   --shadow-small: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -41,6 +43,8 @@
   --transition-fast: 0.15s;
   --transition-normal: 0.3s;
   --transition-slow: 0.5s;
+
+  --max-width: 1500px;
 }
 
 :root[data-theme="dark"] {
@@ -56,6 +60,7 @@
   /* Text Color Palette */
   --color-text-primary: #e0e0e0;
   --color-text-secondary: #b0b0b0;
+  --color-text-accent: #000;
 
   /* Border Color Palette */
   --color-border: #333333;
@@ -76,6 +81,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 10rem;
 }
 
 body {
@@ -105,15 +111,15 @@ p {
 }
 
 button {
-  font-family: var(--font-family-sans);
   background-color: var(--color-primary);
   color: var(--color-background);
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-sm-2) var(--spacing-xl);
   border: none;
-  border-radius: var(--border-radius-small);
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
   box-shadow: var(--shadow-small);
   transition: background-color var(--transition-normal);
+  font-size: 1em;
 }
 
 button:hover {
@@ -122,4 +128,14 @@ button:hover {
 
 a {
   text-decoration: none;
+  color: var(--color-text-primary);
+  transition: color var(--transition-normal);
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+ul {
+  list-style-type: none;
 }
