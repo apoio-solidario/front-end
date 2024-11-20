@@ -1,65 +1,85 @@
+<script lang="ts" setup></script>
+
 <template>
-    <section class="cardCamp">
-        <img src="../public/images/Image.png" alt="" class="Raccoon">
+    <div class="campaign-card">
+        <img src="https://picsum.photos/1200/630" alt="" class="campaign-card-image">
 
-        <div class="inf">
-            <p class="local">Juazeiro do Norte - CE</p>
-            <h1>lorem imput....</h1>
-            <p class="inf_camp">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+        <div class="campaign-card-content">
+            <h4 class="campaign-card-info campaign-card-local">
+                <Icon name="mdi:location" style="color: black" size="1em" />
+                Juazeiro do Norte - CE
+            </h4>
+            <h2 class="campaign-card-info campaign-card-title">Lorem Ipsum</h2>
+            <p class="campaign-card-info campaign-card-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit, sed do eiusmod tempor
+            </p>
         </div>
 
-        <div class="btn">
-            <button class="ver">Ver mais</button>
-            <button class="btn_WH-50"><img src="../public/images/Heart.png" alt="" ></button>
-            <button class="btn_WH-50"><img src="../public/images/Share.png" alt="" ></button>
+        <div class="campaign-card-links">
+            <PrimaryLink href="/" title="Ver mais sobre essa campanha" class="campaign-card-link">
+                Ver Mais
+            </PrimaryLink>
+            <PrimaryLink href="/" title="Salvar campanha" class="campaign-card-link">
+                <Icon name="mdi:cards-heart-outline" style="color: white" size="1.3em" />
+            </PrimaryLink>
+            <PrimaryLink href="/" title="Compartilhar campanha" class="campaign-card-link">
+                <Icon name="mdi:share-variant" style="color: white" size="1.3em" />
+            </PrimaryLink>
         </div>
-
-        <div class="test"></div>
-    </section>
-    
+    </div>
 </template>
 
-<script>
-export default {
-   
-}
-</script>
-
 <style scoped>
-.cardCamp {
-    border: solid 2px #42A3DA;
-    height: 70%;
+.campaign-card {
+    border: 1px solid var(--color-border);
     width: 425px;
-    border-radius: 22px;
-}
-.Raccoon{
-    position: relative;
-    width: 425px;
-    right: 1.7px;
-    bottom: 2px;
-}
-.local{
-    margin-bottom: 25px;
-    font-weight: 600;
-}
-.inf{
-    margin-left: 20px;
+    border-radius: var(--border-radius-md);
+    padding: var(--card-min-padding) var(--card-min-padding);
+    box-shadow: var(--shadow-small);
 }
 
-.btn{
+.campaign-card-image {
+    position: relative;
+    width: 100%;
+    border-radius: var(--border-radius-md);
+}
+
+.campaign-card-content {
     display: flex;
-    justify-content: space-around;
-    margin: 25px 15px 10px 15px;
+    gap: 0.5rem;
+    flex-direction: column;
+    margin: 0.5rem 0;
 }
-.btn_WH-50{
-    padding: 10px;
+
+.campaign-card-info {
+    margin: 0;
 }
-.ver{
-    width: 230px;
-    font-size: larger;
+
+.campaign-card-local {
+    font-weight: normal;
+    font-size: 0.85em;
 }
-.inf_camp{
+
+.campaign-card-links {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
+.campaign-card-link:first-child {
+    width: 100%;
+    flex: 4;
+}
+
+.campaign-card-link {
+    width: 100%;
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-xl);
+}
+
+.campaign-card-description {
     font-size: 16px;
-    width:300px;
+    width: 300px;
 }
 </style>
