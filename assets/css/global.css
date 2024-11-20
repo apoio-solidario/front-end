@@ -44,7 +44,7 @@
   --transition-normal: 0.3s;
   --transition-slow: 0.5s;
 
-  --max-width: 1500px;
+  --max-width: 1300px;
 }
 
 :root[data-theme="dark"] {
@@ -134,8 +134,4 @@ a {
 
 a:hover {
   color: var(--color-primary);
-}
-
-ul {
-  list-style-type: none;
 }
