@@ -1,13 +1,11 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue';
-
 const props = defineProps({ href: { type: String, required: true }, title: { type: String, required: false } })
 </script>
 
 <template>
-  <a :href="href" :title="title" class="secondary-button">
+  <NuxtLink :href="href" :title="title" class="secondary-button">
     <slot />
-  </a>
+  </NuxtLink>
 </template>
 
 <style>

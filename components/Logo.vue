@@ -1,3 +1,5 @@
+<script lang="ts" setup></script>
+
 <template>
   <div class="logo">
     <img src="/favicon.ico" alt="Logo">

@@ -1,3 +1,5 @@
+<script lang="ts" setup></script>
+
 <template>
   <header>
     <div class="container">
@@ -41,6 +43,10 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  top: 0;
+  background-color: var(--color-background);
+  z-index: 99;
 }
 
 .container {
@@ -58,6 +64,7 @@ nav ul {
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  list-style-type: none;
 }
 
 nav ul li {
