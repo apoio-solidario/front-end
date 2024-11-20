@@ -2,7 +2,6 @@
 import { clearError } from '#app/composables/error';
 import { useHead } from '@unhead/vue';
 
-const isDev = import.meta.dev
 const props = defineProps({
     error: Object,
 })
@@ -23,13 +22,15 @@ function handleError() {
             <h1>
                 Ocorreu um erro
             </h1>
+            <DevOnly>
+                <pre class="dev-message">{{ error }}</pre>
+            </DevOnly>
             <p>
                 Parece que você seguiu um link quebrado ou inseriu uma URL que não existe neste site.
             </p>
-            <pre v-if="isDev" class="dev-message">{{ error }}</pre>
-            <button @click="handleError">
+            <PrimaryButton @click="handleError">
                 Voltar
-            </button>
+            </PrimaryButton>
         </div>
     </NuxtLayout>
 </template>
