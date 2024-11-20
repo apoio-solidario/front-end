@@ -31,5 +31,5 @@ export default defineNuxtConfig({
   },
 
   // Nuxt Modules
-  modules: ["@nuxt/image"],
+  modules: ["@nuxt/image", "@nuxt/icon"],
 });
