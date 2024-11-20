@@ -4,15 +4,18 @@ const props = defineProps({ src: { type: String, required: true }, alt: { type: 
 
 <template>
   <div class="illustration-container">
-    <NuxtImg :src="src" alt="alt" class="illustration" />
+    <NuxtImg :src="src" :alt="alt" class="illustration" />
   </div>
 </template>
 
 <style>
 .illustration-container {
   height: 100%;
-  width: 60%;
+  width: 100%;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .illustration {
