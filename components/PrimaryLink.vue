@@ -17,6 +17,7 @@ const props = defineProps({ href: { type: String, required: true }, title: { typ
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-small);
   transition: background-color var(--transition-normal);
+  align-content: center;
 }
 
 .primary-button:hover {

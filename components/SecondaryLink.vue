@@ -17,6 +17,7 @@ const props = defineProps({ href: { type: String, required: true }, title: { typ
   padding: var(--spacing-sm-2) var(--spacing-xl);
   box-shadow: var(--shadow-small);
   transition: color var(--transition-normal), background-color var(--transition-normal);
+  align-content: center;
 }
 
 .secondary-button::before {
