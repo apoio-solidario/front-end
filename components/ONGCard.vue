@@ -1,41 +1,34 @@
 <script lang="ts" setup></script>
 
 <template>
-    <div class="campaign-card">
-        <img src="/public/images/giarafa.png" alt="" class="campaign-card-image">
+    <div class="ong-card">
+        <div class="ong-card-banner">
+            <img src="https://picsum.photos/1200/630" alt="" class="ong-card-image">
+            <div class="ong-card-avatar">
+                <img src="/public/android-chrome-192x192.png" alt="" class="ong-card-avatar-image">
+            </div>
+        </div>
 
-        <div class="campaign-card-content">
-              <div class="img">
-                <img src="/public/android-chrome-192x192.png" alt="" class="icon">
-            </div>  
-            <h2 class="campaign-card-info campaign-card-title">Lorem Ipsum</h2>
-            <p class="campaign-card-info campaign-card-description">
+        <div class="ong-card-content">
+            <h2 class="ong-card-info ong-card-title">Lorem Ipsum</h2>
+            <p class="ong-card-info ong-card-description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing
                 elit, sed do eiusmod tempor
             </p>
         </div>
 
-        <div class="campaign-card-links">
-            <PrimaryLink href="/" title="Ver mais sobre essa campanha" class="campaign-card-link">
+        <div class="ong-card-actions">
+            <PrimaryLink href="/" title="Ver mais sobre essa ONG" class="ong-card-action">
                 Ver Mais
             </PrimaryLink>
-            <IconLink href="/" title="Salvar campanha" icon="mdi:cards-heart-outline" />
-            <IconLink href="/" title="Compartilhar campanha" icon="mdi:share-variant" />
+            <IconLink href="/" title="Salvar ONG" icon="mdi:cards-heart-outline" class="ong-card-action" />
+            <IconLink href="/" title="Compartilhar ONG" icon="mdi:share-variant" class="ong-card-action" />
         </div>
     </div>
 </template>
 
 <style scoped>
-.icon{
-    width: 35%;
-}
-.img{
-    position: relative;
-    bottom: 7px;
-    left: 25px;
-    width: 60%;
-}
-.campaign-card {
+.ong-card {
     border: 1px solid var(--color-border);
     width: 425px;
     border-radius: var(--border-radius-md);
@@ -43,47 +36,69 @@
     box-shadow: var(--shadow-small);
 }
 
-.campaign-card-image {
-    width: 100%;
+.ong-card-banner {
     height: 150px;
+    width: 100%;
+    position: relative;
+    object-fit: cover;
+}
+
+.ong-card-image {
+    height: inherit;
+    width: 100%;
     border-radius: var(--border-radius-md);
 }
 
-.campaign-card-content {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    bottom: 40px;
+.ong-card-avatar {
+    position: absolute;
+    bottom: -80px;
+    left: 8px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background-color: var(--color-background);
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.campaign-card-info {
+.ong-card-avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ong-card-content {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    margin: 2.5rem 0 0.5rem 0;
+}
+
+.ong-card-avatar {
+    height: 5rem;
+    width: 5rem;
+    transform: translateY(-60%);
+}
+
+.ong-card-info {
     margin: 0;
 }
 
-.campaign-card-local {
-    font-weight: normal;
-    font-size: 0.85em;
-}
-
-.campaign-card-links {
+.ong-card-actions {
     display: flex;
     width: 100%;
     gap: 1rem;
 }
 
-.campaign-card-link:first-child {
+.ong-card-action:first-child {
     width: 100%;
     flex: 4;
 }
 
-.campaign-card-link {
+.ong-card-action {
     width: 100%;
     flex: 1;
     padding: var(--spacing-sm) var(--spacing-xl);
-}
-
-.campaign-card-description {
-    font-size: 16px;
-    width: 300px;
 }
 </style>
