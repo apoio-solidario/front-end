@@ -1,3 +1,11 @@
+import { defineEventHandler, getQuery } from "#imports";
+
 export default defineEventHandler(async (event) => {
-  return "Hello World!";
+  const params = getQuery(event);
+
+  return {
+    message: "Hello World",
+    time: new Date().toLocaleString(),
+    params,
+  };
 });

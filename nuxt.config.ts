@@ -8,4 +8,10 @@ export default defineNuxtConfig({
     port: 4312,
   },
   css: ["~/assets/css/global.css"],
+  imports: {
+    autoImport: false,
+  },
+  runtimeConfig: {
+    AS_API: "",
+  },
 });
