@@ -5,7 +5,7 @@
         <img src="https://picsum.photos/1200/630" alt="" class="event-card-image">
 
         <div class="event-card-content">
-            <h1>Lorem Ipsum</h1>
+            <h2>Lorem Ipsum</h2>
             <p>
                 Lorem ipsum odor amet, consectetuer adipiscing elit. Eros tincidunt eu torquent nostra habitant dictumst
                 nunc? Sodales justo interdum parturient euismod lobortis velit.
@@ -28,12 +28,12 @@
                 <span>R. Todos os Santos, 286-552 - Salesianos, Juazeiro do Norte, Ceará</span>
             </div>
 
-            <div class="event-card-links">
-                <PrimaryLink href="/" title="Ver mais sobre esse evento" class="event-card-link">
+            <div class="event-card-actions">
+                <PrimaryLink href="/" title="Ver mais sobre esse evento" class="event-card-action">
                     Ver Mais
                 </PrimaryLink>
-                <IconLink href="/" title="Salvar evento" icon="mdi:cards-heart-outline" />
-                <IconLink href="/" title="Compartilhar evento" icon="mdi:share-variant" />
+                <IconLink href="/" title="Salvar evento" icon="mdi:cards-heart-outline" class="event-card-action" />
+                <IconLink href="/" title="Compartilhar evento" icon="mdi:share-variant" class="event-card-action" />
             </div>
         </div>
     </div>
@@ -72,18 +72,18 @@
     margin: 0;
 }
 
-.event-card-links {
+.event-card-actions {
     display: flex;
     width: 100%;
     gap: 1rem;
 }
 
-.event-card-link:first-child {
+.event-card-action:first-child {
     width: 100%;
     flex: 4;
 }
 
-.event-card-link {
+.event-card-action {
     width: 100%;
     flex: 1;
     padding: var(--spacing-sm) var(--spacing-xl);

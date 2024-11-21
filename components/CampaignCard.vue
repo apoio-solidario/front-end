@@ -16,12 +16,12 @@
             </p>
         </div>
 
-        <div class="campaign-card-links">
-            <PrimaryLink href="/" title="Ver mais sobre essa campanha" class="campaign-card-link">
+        <div class="campaign-card-actions">
+            <PrimaryLink href="/" title="Ver mais sobre essa campanha" class="campaign-card-action">
                 Ver Mais
             </PrimaryLink>
-            <IconLink href="/" title="Salvar campanha" icon="mdi:cards-heart-outline" />
-            <IconLink href="/" title="Compartilhar campanha" icon="mdi:share-variant" />
+            <IconLink href="/" title="Salvar campanha" icon="mdi:cards-heart-outline" class="campaign-card-action" />
+            <IconLink href="/" title="Compartilhar campanha" icon="mdi:share-variant" class="campaign-card-action" />
         </div>
     </div>
 </template>
@@ -36,7 +36,6 @@
 }
 
 .campaign-card-image {
-    position: relative;
     width: 100%;
     border-radius: var(--border-radius-md);
 }
@@ -57,25 +56,20 @@
     font-size: 0.85em;
 }
 
-.campaign-card-links {
+.campaign-card-actions {
     display: flex;
     width: 100%;
     gap: 1rem;
 }
 
-.campaign-card-link:first-child {
+.campaign-card-action:first-child {
     width: 100%;
     flex: 4;
 }
 
-.campaign-card-link {
+.campaign-card-action {
     width: 100%;
     flex: 1;
     padding: var(--spacing-sm) var(--spacing-xl);
-}
-
-.campaign-card-description {
-    font-size: 16px;
-    width: 300px;
 }
 </style>
