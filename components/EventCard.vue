@@ -1,14 +1,19 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import type { Event } from '~/shared/types/event';
+
+const props = defineProps<{
+    item: Event
+}>()
+</script>
 
 <template>
     <div class="event-card">
         <img src="https://picsum.photos/1200/630" alt="" class="event-card-image">
 
         <div class="event-card-content">
-            <h2>Lorem Ipsum</h2>
+            <h2>{{ item.title }}</h2>
             <Description>
-                Lorem ipsum odor amet, consectetuer adipiscing elit. Eros tincidunt eu torquent nostra habitant dictumst
-                nunc? Sodales justo interdum parturient euismod lobortis velit.
+                {{ item.description }}
             </Description>
 
             <hr>
@@ -42,7 +47,7 @@
 <style scoped>
 .event-card {
     border: 1px solid var(--color-border);
-    max-width: 375px;
+    max-width: var(--card-max-width);
     border-radius: var(--border-radius-md);
     padding: var(--card-min-padding) var(--card-min-padding);
     box-shadow: var(--shadow-small);

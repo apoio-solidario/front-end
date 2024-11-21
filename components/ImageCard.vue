@@ -1,18 +1,24 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import type { Image } from '~/shared/types/image';
+
+const props = defineProps<{
+    item: Image
+}>()
+</script>
 
 <template>
     <div class="image-card">
-        <img src="https://picsum.photos/1200/630" alt="" class="image-card-image">
+        <img :src="item.image_url" :alt="item.image_name" class="image-card-image">
 
         <div class="image-card-content">
             <div class="image-card-info">
                 <Icon name="mdi:image" />
-                <span>81096086-27ab-492c-bb80-db800b...</span>
+                <span>{{ item.image_name }}</span>
             </div>
 
             <div class="image-card-info">
                 <Icon name="mdi:clock-outline" />
-                <span>12 de nov. de 2024</span>
+                <span>{{ item.created_at }}</span>
             </div>
         </div>
     </div>
@@ -21,7 +27,7 @@
 <style scoped>
 .image-card {
     border: 1px solid var(--color-border);
-    max-width: 375px;
+    max-width: var(--card-max-width);
     border-radius: var(--border-radius-md);
     padding: var(--card-min-padding) var(--card-min-padding);
     box-shadow: var(--shadow-small);

@@ -1,18 +1,23 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import type { Campaign } from '~/shared/types/campaign';
+
+const props = defineProps<{
+    item: Campaign
+}>()
+</script>
 
 <template>
     <div class="campaign-card">
-        <img src="https://picsum.photos/1200/630" alt="" class="campaign-card-image">
+        <img :src="item.image_banner" alt="" class="campaign-card-image">
 
         <div class="campaign-card-content">
             <h4 class="campaign-card-info campaign-card-local">
                 <Icon name="mdi:location" size="1em" />
                 Juazeiro do Norte - CE
             </h4>
-            <h2 class="campaign-card-info campaign-card-title">Lorem Ipsum</h2>
+            <h2 class="campaign-card-info campaign-card-title">{{ item.title }}</h2>
             <Description>
-                Lorem ipsum odor amet, consectetuer adipiscing elit. Eros tincidunt eu torquent nostra habitant dictumst
-                nunc? Sodales justo interdum parturient euismod lobortis velit.
+                {{ item.description }}
             </Description>
         </div>
 
@@ -29,7 +34,7 @@
 <style scoped>
 .campaign-card {
     border: 1px solid var(--color-border);
-    max-width: 375px;
+    max-width: var(--card-max-width);
     border-radius: var(--border-radius-md);
     padding: var(--card-min-padding) var(--card-min-padding);
     box-shadow: var(--shadow-small);
