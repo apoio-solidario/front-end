@@ -6,10 +6,10 @@
 
         <div class="event-card-content">
             <h2>Lorem Ipsum</h2>
-            <p>
+            <Description>
                 Lorem ipsum odor amet, consectetuer adipiscing elit. Eros tincidunt eu torquent nostra habitant dictumst
                 nunc? Sodales justo interdum parturient euismod lobortis velit.
-            </p>
+            </Description>
 
             <hr>
 

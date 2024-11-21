@@ -10,10 +10,10 @@
                 Juazeiro do Norte - CE
             </h4>
             <h2 class="campaign-card-info campaign-card-title">Lorem Ipsum</h2>
-            <p class="campaign-card-info campaign-card-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit, sed do eiusmod tempor
-            </p>
+            <Description>
+                Lorem ipsum odor amet, consectetuer adipiscing elit. Eros tincidunt eu torquent nostra habitant dictumst
+                nunc? Sodales justo interdum parturient euismod lobortis velit.
+            </Description>
         </div>
 
         <div class="campaign-card-actions">

@@ -25,9 +25,9 @@ function handleError() {
             <DevOnly>
                 <pre class="dev-message">{{ error }}</pre>
             </DevOnly>
-            <p>
+            <Description>
                 Parece que você seguiu um link quebrado ou inseriu uma URL que não existe neste site.
-            </p>
+            </Description>
             <PrimaryButton @click="handleError">
                 Voltar
             </PrimaryButton>

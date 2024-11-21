@@ -11,10 +11,10 @@
 
         <div class="ong-card-content">
             <h2 class="ong-card-info ong-card-title">Lorem Ipsum</h2>
-            <p class="ong-card-info ong-card-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit, sed do eiusmod tempor
-            </p>
+            <Description>
+                Lorem ipsum odor amet, consectetuer adipiscing elit. Eros tincidunt eu torquent nostra habitant dictumst
+                nunc? Sodales justo interdum parturient euismod lobortis velit.
+            </Description>
         </div>
 
         <div class="ong-card-actions">
