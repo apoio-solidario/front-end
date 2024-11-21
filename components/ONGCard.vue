@@ -30,7 +30,7 @@
 <style scoped>
 .ong-card {
     border: 1px solid var(--color-border);
-    width: 425px;
+    max-width: 375px;
     border-radius: var(--border-radius-md);
     padding: var(--card-min-padding) var(--card-min-padding);
     box-shadow: var(--shadow-small);
@@ -72,7 +72,7 @@
     display: flex;
     gap: 0.5rem;
     flex-direction: column;
-    margin: 2.5rem 0 0.5rem 0;
+    margin: 2.2rem 0 0.5rem 0;
 }
 
 .ong-card-avatar {
@@ -92,13 +92,11 @@
 }
 
 .ong-card-action:first-child {
-    width: 100%;
     flex: 4;
 }
 
 .ong-card-action {
     width: 100%;
     flex: 1;
-    padding: var(--spacing-sm) var(--spacing-xl);
 }
 </style>

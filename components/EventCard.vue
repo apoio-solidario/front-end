@@ -27,14 +27,14 @@
                 <Icon name="mdi:location" size="1.8em" />
                 <span>R. Todos os Santos, 286-552 - Salesianos, Juazeiro do Norte, Ceará</span>
             </div>
+        </div>
 
-            <div class="event-card-actions">
-                <PrimaryLink href="/" title="Ver mais sobre esse evento" class="event-card-action">
-                    Ver Mais
-                </PrimaryLink>
-                <IconLink href="/" title="Salvar evento" icon="mdi:cards-heart-outline" class="event-card-action" />
-                <IconLink href="/" title="Compartilhar evento" icon="mdi:share-variant" class="event-card-action" />
-            </div>
+        <div class="event-card-actions">
+            <PrimaryLink href="/" title="Ver mais sobre esse evento" class="event-card-action">
+                Ver Mais
+            </PrimaryLink>
+            <IconLink href="/" title="Salvar evento" icon="mdi:cards-heart-outline" class="event-card-action" />
+            <IconLink href="/" title="Compartilhar evento" icon="mdi:share-variant" class="event-card-action" />
         </div>
     </div>
 </template>
@@ -42,7 +42,7 @@
 <style scoped>
 .event-card {
     border: 1px solid var(--color-border);
-    width: 425px;
+    max-width: 375px;
     border-radius: var(--border-radius-md);
     padding: var(--card-min-padding) var(--card-min-padding);
     box-shadow: var(--shadow-small);
@@ -56,8 +56,8 @@
 .event-card-content {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
     gap: 10px;
+    margin: 0.5rem 0 0.8rem 0;
 }
 
 .event-card-info {
@@ -79,13 +79,11 @@
 }
 
 .event-card-action:first-child {
-    width: 100%;
     flex: 4;
 }
 
 .event-card-action {
     width: 100%;
     flex: 1;
-    padding: var(--spacing-sm) var(--spacing-xl);
 }
 </style>

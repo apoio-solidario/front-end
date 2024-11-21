@@ -21,7 +21,7 @@
 <style scoped>
 .image-card {
     border: 1px solid var(--color-border);
-    width: 425px;
+    max-width: 375px;
     border-radius: var(--border-radius-md);
     padding: var(--card-min-padding) var(--card-min-padding);
     box-shadow: var(--shadow-small);

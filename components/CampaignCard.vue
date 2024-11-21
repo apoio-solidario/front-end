@@ -29,7 +29,7 @@
 <style scoped>
 .campaign-card {
     border: 1px solid var(--color-border);
-    width: 425px;
+    max-width: 375px;
     border-radius: var(--border-radius-md);
     padding: var(--card-min-padding) var(--card-min-padding);
     box-shadow: var(--shadow-small);
@@ -63,13 +63,11 @@
 }
 
 .campaign-card-action:first-child {
-    width: 100%;
     flex: 4;
 }
 
 .campaign-card-action {
     width: 100%;
     flex: 1;
-    padding: var(--spacing-sm) var(--spacing-xl);
 }
 </style>
