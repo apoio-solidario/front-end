@@ -1,63 +1,91 @@
+<script lang="ts" setup></script>
+
 <template>
-    <div class="card_image">
-    <img src="../public/images/cat.png" alt="">
-        <div>
+    <div class="event-card">
+        <img src="https://picsum.photos/1200/630" alt="" class="event-card-image">
+
+        <div class="event-card-content">
             <h1>Lorem Ipsum</h1>
-            <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Eros tincidunt eu torquent nostra habitant dictumst nunc? Sodales justo interdum parturient euismod lobortis velit. </p>
-        </div>
-         <hr>
+            <p>
+                Lorem ipsum odor amet, consectetuer adipiscing elit. Eros tincidunt eu torquent nostra habitant dictumst
+                nunc? Sodales justo interdum parturient euismod lobortis velit.
+            </p>
 
-        <div class="informacoes">
-            <div class="inf_time">
-                <img src="../public/images/DateRange.png" alt="" class="vetor">
-                <p>Sun, Sep 10, 2023 - Tue, Sep 12, 2023</p>
+            <hr>
+
+            <div class="event-card-info event-card-info-date">
+                <Icon name="mdi:calendar" />
+                <span>Sun, Sep 10, 2023 - Tue, Sep 12, 2023</span>
             </div>
 
-            <div class="inf_time">
-                <img src="../public/images/AccessTime.png" alt="" class="vetor">
-                <p>09:00 AM - 05:00 PM</p>
+            <div class="event-card-info event-card-info-hours">
+                <Icon name="mdi:clock-outline" />
+                <span>09:00 AM - 05:00 PM</span>
             </div>
 
-            <div class="inf_time">
-                <img src="../public/images/local.png" alt="" class="vetor">
-                <p>R. Todos os Santos, 286-552 - Salesianos, Juazeiro do Norte, Ceará</p>
+            <div class="event-card-info event-card-info-location">
+                <Icon name="mdi:location" size="1.8em" />
+                <span>R. Todos os Santos, 286-552 - Salesianos, Juazeiro do Norte, Ceará</span>
             </div>
 
-            <button class="ver">ver mais</button>
-
-
+            <div class="event-card-links">
+                <PrimaryLink href="/" title="Ver mais sobre esse evento" class="event-card-link">
+                    Ver Mais
+                </PrimaryLink>
+                <IconLink href="/" title="Salvar evento" icon="mdi:cards-heart-outline" />
+                <IconLink href="/" title="Compartilhar evento" icon="mdi:share-variant" />
+            </div>
         </div>
     </div>
 </template>
 
-<script>
-    export default {
-        
-    }
-</script>
-
 <style scoped>
-.informacoes{
+.event-card {
+    border: 1px solid var(--color-border);
+    width: 425px;
+    border-radius: var(--border-radius-md);
+    padding: var(--card-min-padding) var(--card-min-padding);
+    box-shadow: var(--shadow-small);
+}
+
+.event-card-image {
+    width: 100%;
+    border-radius: var(--border-radius-md);
+}
+
+.event-card-content {
     display: flex;
     flex-direction: column;
-    margin-top:10px;
+    margin-top: 10px;
     gap: 10px;
-    }
-   .card_image {
-    border: solid 2px rgba(0, 0, 0, 0.281);
-    border-radius: 22px;
-    padding: 14px;
-    width: 400px;
-    height: 100%;
-   }
-   .inf_time{
+}
+
+.event-card-info {
+    margin: 0;
     display: flex;
     align-items: center;
-    gap:10px;
+    gap: 10px;
     height: 30px;
-   }
-   .ver{
-    margin-top: 15px;
-   }
+}
 
+.event-card-content>* {
+    margin: 0;
+}
+
+.event-card-links {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
+.event-card-link:first-child {
+    width: 100%;
+    flex: 4;
+}
+
+.event-card-link {
+    width: 100%;
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-xl);
+}
 </style>
