@@ -6,7 +6,7 @@
 
         <div class="campaign-card-content">
             <h4 class="campaign-card-info campaign-card-local">
-                <Icon name="mdi:location" style="color: black" size="1em" />
+                <Icon name="mdi:location" size="1em" />
                 Juazeiro do Norte - CE
             </h4>
             <h2 class="campaign-card-info campaign-card-title">Lorem Ipsum</h2>
@@ -20,12 +20,8 @@
             <PrimaryLink href="/" title="Ver mais sobre essa campanha" class="campaign-card-link">
                 Ver Mais
             </PrimaryLink>
-            <PrimaryLink href="/" title="Salvar campanha" class="campaign-card-link">
-                <Icon name="mdi:cards-heart-outline" style="color: white" size="1.3em" />
-            </PrimaryLink>
-            <PrimaryLink href="/" title="Compartilhar campanha" class="campaign-card-link">
-                <Icon name="mdi:share-variant" style="color: white" size="1.3em" />
-            </PrimaryLink>
+            <IconLink href="/" title="Salvar campanha" icon="mdi:cards-heart-outline" />
+            <IconLink href="/" title="Compartilhar campanha" icon="mdi:share-variant" />
         </div>
     </div>
 </template>
