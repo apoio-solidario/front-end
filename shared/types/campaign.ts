@@ -12,7 +12,7 @@ export interface Campaign {
   image_banner: string;
   status: string;
   ong_id: number;
-  feedbacks: Feedback[] | null;
+  feedbacks: Feedback[];
   created_at: string;
   updated_at: string;
 }
