@@ -1,19 +1,24 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import type { ONG } from '~/shared/types/ong';
+
+const props = defineProps<{
+    item: ONG
+}>()
+</script>
 
 <template>
     <div class="ong-card">
         <div class="ong-card-banner">
-            <img src="https://picsum.photos/1200/630" alt="" class="ong-card-image">
+            <img :src="item.image_banner" :alt="item.name" class="ong-card-image">
             <div class="ong-card-avatar">
-                <img src="/public/android-chrome-192x192.png" alt="" class="ong-card-avatar-image">
+                <img :src="item.image_profile" :alt="item.name" class="ong-card-avatar-image">
             </div>
         </div>
 
         <div class="ong-card-content">
-            <h2 class="ong-card-info ong-card-title">Lorem Ipsum</h2>
+            <h2 class="ong-card-info ong-card-title">{{ item.name }}</h2>
             <Description>
-                Lorem ipsum odor amet, consectetuer adipiscing elit. Eros tincidunt eu torquent nostra habitant dictumst
-                nunc? Sodales justo interdum parturient euismod lobortis velit.
+                {{ item.description }}
             </Description>
         </div>
 
@@ -30,7 +35,7 @@
 <style scoped>
 .ong-card {
     border: 1px solid var(--color-border);
-    max-width: 375px;
+    max-width: var(--card-max-width);
     border-radius: var(--border-radius-md);
     padding: var(--card-min-padding) var(--card-min-padding);
     box-shadow: var(--shadow-small);

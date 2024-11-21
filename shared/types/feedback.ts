@@ -1,6 +1,9 @@
 export interface Feedback {
   id: number;
-  comment: string;
+  username: string;
+  email: string;
+  content: string;
   rating: number;
-  created_at: string;
+  event_id?: number;
+  campaign_id?: number;
 }

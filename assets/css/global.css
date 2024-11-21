@@ -47,6 +47,7 @@
   --max-width: 1300px;
   --screen-min-width-padding: 2rem;
   --card-min-padding: 1rem;
+  --card-max-width: 410px;
 }
 
 :root[data-theme="dark"] {
