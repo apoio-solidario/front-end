@@ -10,9 +10,10 @@ const props = defineProps({ icon: { type: String, required: true }, href: { type
 
 <style>
 .icon-link {
+  width: 100%;
   background-color: transparent;
   color: var(--color-text-accent);
-  padding: var(--spacing-sm) var(--spacing-xl);
+  padding: var(--spacing-xs);
   border: none;
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-small);
