@@ -3,6 +3,7 @@ import { useSeoMeta } from '#app';
 import AboutSection from '~/layouts/homepage/AboutSection.vue';
 import HelpSection from '~/layouts/homepage/HelpSection.vue';
 import HomeSection from '~/layouts/homepage/HomeSection.vue';
+import EndSection from '~/layouts/homepage/EndSection.vue';
 
 useSeoMeta({
     title: 'Início | Apoio Solidário',
@@ -17,6 +18,7 @@ useSeoMeta({
     <HomeSection />
     <AboutSection />
     <HelpSection />
+    <EndSection />
 </template>
 
 <style scoped></style>
