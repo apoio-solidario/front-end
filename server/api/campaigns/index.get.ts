@@ -1,7 +1,7 @@
-import { getQuery, useRuntimeConfig } from "#imports";
-import { defineRouter } from "~/server/utils/defineRouter";
+import { createError, getQuery, useRuntimeConfig } from "#imports";
+import { defineCachedRouter } from "~/server/utils/defineCachedRouter";
 
-export default defineRouter(async (event) => {
+export default defineCachedRouter(async (event) => {
   const config = useRuntimeConfig(event);
   const query = getQuery(event);
 
@@ -14,7 +14,9 @@ export default defineRouter(async (event) => {
     });
   } catch (e: any) {
     const status = e.status || 500;
-    event.node.req.statusCode = status;
-    return e.message;
+    throw createError({
+      statusCode: status,
+      message: e.message || "Something went wrong",
+    });
   }
 });
