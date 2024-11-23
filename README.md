@@ -1,6 +1,14 @@
-# Apoio Solidário
+<h1 align="center">
+  <br>
+  <img src="./public/android-chrome-512x512.png" alt="Apoio Solidário" width="100">
+  <br>
+    Apoio Solidário
+  <br>
+</h1>
 
-Esse projeto é uma aplicação desenvolvida com `VueJs (NuxtJs)` projetada para conectar instituições sem fins lucrativos (ONGs) a potenciais doadores.
+<h4 align="center">Esse projeto é uma aplicação desenvolvida com <code>VueJs (NuxtJs)</code> projetada para conectar instituições sem fins lucrativos (ONGs) a potenciais doadores.</h4>
+
+![homepage](./images/homepage.png)
 
 ## Tecnologias
 
@@ -67,6 +75,25 @@ cd ./front-end
 
 ### Preparação
 
+#### Variáveis
+
+Para o front-end funcionar corretamente vamos precisar de dados (campanhas, eventos, ongs, etc..)
+
+Podemos conseguir os dados através de:
+
+- URL da [API do Apoio Solidário](https://github.com/apoio-solidario/apoio-solidario-back-end)
+- URL com dados falsos
+
+Crie um arquivo `.env` seguindo o modelo [.env.example](./.env.example) e após isso, coloque as informações.
+
+Exemplo:
+
+```
+AS_API=<url-dos-dados>
+```
+
+#### Dependências
+
 Certifique-se de instalar as dependências:
 
 ```bash
@@ -82,3 +109,24 @@ npm run dev
 ```
 
 Agora, abra o link no seu navegador.
+
+## Contribuidores
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/LucJosin" title="Open Github">
+        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/76869974?v=4" width="100px;" alt=""/>
+        <br />
+        <sub><b>Lucas Josino</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/JonatasGomesss" title="Open Github">
+        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/136379340?v=4" width="100px;" alt=""/>
+        <br />
+        <sub><b>Jonatas</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
