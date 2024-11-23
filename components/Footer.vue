@@ -2,7 +2,7 @@
 
 <template>
   <footer>
-    <div class="footer-container">
+ <div class="footer-container">
       <Logo />
     </div>
   </footer>
