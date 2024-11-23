@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   // Development server configuration
   devServer: {
     // Development server listening host
-    port: 4312,
+    port: 4223,
   },
 
   // Style configuration
