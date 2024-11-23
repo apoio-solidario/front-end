@@ -16,11 +16,6 @@ export default defineNuxtConfig({
   // Style configuration
   css: ["~/assets/css/global.css"],
 
-  // Import configuration
-  imports: {
-    autoImport: false,
-  },
-
   // Environment variables
   runtimeConfig: {
     AS_API: "",
