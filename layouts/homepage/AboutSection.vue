@@ -19,10 +19,6 @@
         <PrimaryLink href="/#como-ajudar">
           Como Ajudar?
         </PrimaryLink>
-        <span>ou</span>
-        <SecondaryButton href="/campanhas/">
-          Ver Campanhas
-        </SecondaryButton>
       </div>
     </div>
   </section>
