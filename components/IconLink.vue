@@ -13,7 +13,7 @@ const props = defineProps({ icon: { type: String, required: true }, href: { type
   width: 100%;
   background-color: transparent;
   color: var(--color-text-accent);
-  padding: var(--spacing-xs);
+  padding: var(--spacing-sm);
   border: none;
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-small);
