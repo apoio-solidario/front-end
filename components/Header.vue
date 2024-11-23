@@ -32,8 +32,8 @@ watch(isMobileMenuOpen, (isOpen) => {
       <!-- Hamburger button for mobile -->
       <button class="hamburger" @click="toggleMobileMenu" aria-label="Toggle navigation menu"
         :aria-expanded="isMobileMenuOpen">
-        <Icon name="mdi-menu" class="menu-icon" style="color: black" size="1em" v-if="!isMobileMenuOpen" />
-        <Icon name="mdi-close" class="close-icon" style="color: black" size="1em" v-else />
+        <Icon name="mdi-menu" class="menu-icon" style="color: black" size="1.2em" v-if="!isMobileMenuOpen" />
+        <Icon name="mdi-close" class="close-icon" style="color: black" size="1.2em" v-else />
       </button>
 
       <!-- Navigation -->
@@ -120,25 +120,24 @@ nav ul li hr {
 @media (max-width: 768px) {
   nav {
     position: fixed;
-    top: 0;
+    top: 4rem;
     right: 0;
-    width: 60%;
+    width: 100%;
     height: 100%;
     background-color: var(--color-background);
     transform: translateX(100%);
-    opacity: 0;
+    opacity: 1;
     z-index: 90;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
   }
 
   nav.open {
     transform: translateX(0);
-    opacity: 1;
   }
 
   nav ul {
     flex-direction: column;
-    margin: 5rem 1rem 0;
+    margin: 1rem;
   }
 
   nav ul li {
@@ -147,8 +146,8 @@ nav ul li hr {
   }
 
   .hamburger {
-    height: 2rem;
-    width: 2rem;
+    height: 2.4rem;
+    width: 2.4rem;
     display: flex;
     align-items: center;
     border: 1px solid var(--color-surface);

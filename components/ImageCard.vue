@@ -27,7 +27,6 @@ const props = defineProps<{
 <style scoped>
 .image-card {
     border: 1px solid var(--color-border);
-    max-width: var(--card-max-width);
     border-radius: var(--border-radius-md);
     padding: var(--card-min-padding) var(--card-min-padding);
     box-shadow: var(--shadow-small);
