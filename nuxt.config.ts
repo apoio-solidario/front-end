@@ -2,34 +2,32 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
 
+  // Enable Nuxt devtools for development.
   devtools: {
     enabled: true,
   },
 
+  // Development server configuration
   devServer: {
-    port: 4312,
+    // Development server listening host
+    port: 4223,
   },
 
-  // Style Configuration
+  // Style configuration
   css: ["~/assets/css/global.css"],
 
-  // Import Configuration
-  imports: {
-    autoImport: false,
-  },
-
-  // Environment Variables
+  // Environment variables
   runtimeConfig: {
     AS_API: "",
   },
 
-  // Router Configuration
+  // Router configuration
   router: {
     options: {
       scrollBehaviorType: "smooth",
     },
   },
 
-  // Nuxt Modules
+  // Nuxt modules
   modules: ["@nuxt/image", "@nuxt/icon"],
 });
