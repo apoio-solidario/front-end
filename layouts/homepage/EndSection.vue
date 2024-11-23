@@ -26,12 +26,6 @@
   margin: 5rem 0;
 }
 
-.end-section-impact {
-  border: 1px solid var(--color-primary);
-  border-radius: var(--border-radius-md);
-  padding: 0.5;
-}
-
 .end-section-title {
   margin: 0;
   font-size: 2em;
