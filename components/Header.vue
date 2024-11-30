@@ -37,7 +37,7 @@ watch(isMobileMenuOpen, (isOpen) => {
       </button>
 
       <!-- Navigation -->
-      <nav :class="{ open: isMobileMenuOpen }">
+      <nav :class="['header-nav', { 'open': isMobileMenuOpen }]">
         <ul>
           <li>
             <a href="/">Início</a>
@@ -63,10 +63,10 @@ watch(isMobileMenuOpen, (isOpen) => {
   </header>
 </template>
 
-<style>
+<style scoped>
 header {
   width: 100%;
-  height: 4rem;
+  height: var(--header-height);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,14 +88,14 @@ header {
   position: relative;
 }
 
-nav ul {
+.header-nav ul {
   display: flex;
   gap: 1.5rem;
   padding: 0;
   list-style-type: none;
 }
 
-nav ul li hr {
+.header-nav ul li hr {
   height: 100%;
   margin: 0;
   border: 1px solid var(--color-text-primary);
@@ -131,16 +131,16 @@ nav ul li hr {
     transition: transform 0.3s ease-in-out;
   }
 
-  nav.open {
+  .header-nav.open {
     transform: translateX(0);
   }
 
-  nav ul {
+  .header-nav ul {
     flex-direction: column;
     margin: 1rem;
   }
 
-  nav ul li {
+  .header-nav ul li {
     width: 100%;
     text-align: center;
   }
@@ -153,7 +153,7 @@ nav ul li hr {
     border: 1px solid var(--color-surface);
   }
 
-  nav ul {
+  .header-nav ul {
     align-items: flex-start;
   }
 }
