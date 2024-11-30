@@ -44,6 +44,7 @@
   --transition-normal: 0.3s;
   --transition-slow: 0.5s;
 
+  --header-height: 4rem;
   --max-width: 1300px;
   --screen-min-width-padding: 2rem;
   --card-min-padding: 1rem;
