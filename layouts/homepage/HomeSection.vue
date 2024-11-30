@@ -19,6 +19,7 @@
 
 <style scoped>
 .home-section {
+    margin-top: 5%;
     width: 100%;
     max-width: var(--max-width);
     display: flex;
