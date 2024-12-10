@@ -60,40 +60,6 @@ export const useAuth = () => {
     }
   }
 
-  async function renew(force: boolean = false) {
-    const now = new Date();
-    const diff = Math.round(
-      (Number(state.value?.expires_at) - now.getTime()) / 1000
-    );
-
-    if (diff < 0) {
-      _clearState();
-
-      error.value = {
-        code: 409,
-        message: "Session expired. Please login again",
-      };
-
-      return;
-    }
-
-    if (force || diff <= 5 * 60) {
-      try {
-        const headers = useRequestHeaders(["cookie"]);
-        const res = await $fetch<{ expires_at: number }>("/api/auth/renew", {
-          method: "POST",
-          headers,
-        });
-
-        state.value!.expires_at = res.expires_at;
-      } catch (e: any) {
-        error.value = buildError(e);
-      }
-    }
-
-    return;
-  }
-
   async function initState() {
     const session = useCookie("SESSION_ID");
     if (!session.value) return;
@@ -184,12 +150,6 @@ export const useAuth = () => {
      * It clears the user session and updates the state.
      */
     logout,
-    /**
-     * Function to renew the user session.
-     *
-     * @param {boolean} force - If set to `true`, the session will be renewed even if it is not near expiration.
-     */
-    renew,
     /**
      * Function to get the user data.
      * It fetches the user details from the server and updates the state.
