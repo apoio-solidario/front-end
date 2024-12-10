@@ -1,8 +1,8 @@
-export type UserRole = "ADMIN" | "ONG";
+import type { UserRole } from "./user";
 
-export interface User {
-  user_id: string;
+export interface UserRegister {
   username: string;
+  password: string;
   first_name: string;
   last_name: string;
   email: string;

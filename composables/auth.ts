@@ -1,32 +1,16 @@
 import { FetchError } from "ofetch";
+import type { User } from "~/shared/types/auth/user";
+import type { UserLogin } from "~/shared/types/auth/user-login";
+import type { UserRegister } from "~/shared/types/auth/user-register";
 
 interface UserState {
   isLoggedIn: boolean;
-  id?: string;
-  role?: string;
-  expires_at?: number;
-}
-
-interface UserLogin {
-  username: string;
-  password: string;
-}
-
-interface UserRegister {
-  username: string;
-  password: string;
+  user?: User;
 }
 
 interface UserError {
   code?: number;
   message?: string;
-}
-
-interface User {
-  id: string;
-  username: string;
-  role: string;
-  expires_at?: number;
 }
 
 /**
@@ -145,18 +129,14 @@ export const useAuth = () => {
   function _clearState() {
     state.value = {
       isLoggedIn: false,
-      id: undefined,
-      role: undefined,
-      expires_at: undefined,
+      user: undefined,
     };
   }
 
   function _setState(user: User) {
     state.value = {
       isLoggedIn: true,
-      id: user.id,
-      role: user.role,
-      expires_at: user.expires_at,
+      user,
     };
   }
 

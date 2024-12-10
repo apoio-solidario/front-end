@@ -1,9 +1,9 @@
 import { defineEventHandler } from "#imports";
-import { UserRequest } from "~/shared/types/auth/user-request";
+import { UserRegister } from "~/shared/types/auth/user-register";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
-  const body = await readBody<UserRequest>(event);
+  const body = await readBody<UserRegister>(event);
 
   try {
     return await $fetch("/auth/register", {
