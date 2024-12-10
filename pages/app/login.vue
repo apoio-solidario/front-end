@@ -4,6 +4,7 @@ import { zodResolver } from '@primevue/forms/resolvers/zod';
 import { z } from 'zod';
 
 definePageMeta({
+  middleware: 'authenticated',
   layout: 'login',
 });
 

@@ -10,7 +10,6 @@ definePageMeta({
   </div>
 </template>
 
-
 <style>
 .dashboard-home {
   height: 100%;
