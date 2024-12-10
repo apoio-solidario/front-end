@@ -2,9 +2,9 @@ import { defineCachedEventHandler, useRuntimeConfig } from "#imports";
 import { H3Event } from "h3";
 
 /**
- * Wrapper for `defineCachedHandler` that validates runtime configuration before proceeding.
+ * Wrapper for `defineCachedEventHandler` that validates runtime configuration before proceeding and caches the data.
  * @param handler - The actual event handler function.
- * @returns The wrapped event handler.
+ * @returns The wrapped event handler (with cache).
  */
 export function defineCachedHandler(
   handler: (event: H3Event, config: ReturnType<typeof useRuntimeConfig>) => any
