@@ -15,12 +15,15 @@ export default defineNuxtConfig({
     port: 4223,
   },
 
-  // Style configuration
+  // Style files
   css: ["~/assets/css/global.css"],
+
+  // Nuxt plugins
+  plugins: ["~/plugins/session.server.ts"],
 
   // Environment variables
   runtimeConfig: {
-    AS_API: "",
+    AS_API: process.env.AS_API,
   },
 
   // Router configuration
