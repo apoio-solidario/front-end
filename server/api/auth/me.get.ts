@@ -2,7 +2,6 @@ import { Auth } from "~/shared/types/auth/auth";
 
 export default defineHandler(async (event) => {
   const config = useRuntimeConfig(event);
-  const cookie = getCookie(event, "SESSION_ID");
 
   try {
     return await event.$fetch<Auth>("/auth/me", {

@@ -17,7 +17,7 @@ interface UserError {
  * Auth functions interface to handle user authentication logic.
  */
 export const useAuth = () => {
-  const state = useState<UserState | null>("auth-user", () => null);
+  const state = useState<UserState>("auth-user", () => ({ isLoggedIn: false }));
   const error = useState<UserError | null>("auth-error", () => null);
 
   async function login(body: UserLogin) {
@@ -49,13 +49,14 @@ export const useAuth = () => {
   async function logout() {
     try {
       const headers = useRequestHeaders(["cookie"]);
-      await $fetch<User>("/api/auth/logout", {
+      await $fetch("/api/auth/logout", {
         method: "POST",
         headers,
       });
 
       _clearState();
     } catch (e: any) {
+      console.log("logout/error", e);
       error.value = buildError(e);
     }
   }
@@ -66,7 +67,6 @@ export const useAuth = () => {
 
     const user = await getUser();
     if (error.value) {
-      // Problably an old session, logout to delete the cookie
       return;
     }
 
@@ -86,10 +86,7 @@ export const useAuth = () => {
   }
 
   function clearError() {
-    error.value = {
-      code: undefined,
-      message: undefined,
-    };
+    error.value = null;
   }
 
   function _clearState() {
@@ -120,43 +117,55 @@ export const useAuth = () => {
   return {
     /**
      * Returns the current user state.
+     *
      * This state holds the user information, such as the user's ID and role.
      * It will return `null` if no user is authenticated or the state is not set.
      */
     state: computed(() => state.value),
     /**
-     * Returns the current error state.
+     * Returns the current error (not state), then call {@link clearError}.
+     *
      * This contains any error message that occurred during authentication actions.
      * If no error occurred, it will return `null`.
      */
-    error: computed(() => error.value),
+    getError: () => {
+      const tmpError = error.value;
+      clearError();
+      return tmpError;
+    },
     /**
      * Clears the current error state.
+     *
      * This function is called to reset the error state after an error has been handled.
      */
     clearError,
     /**
      * Function to log the user in.
+     *
      * It sends a request to the server with the provided credentials and updates the state.
      */
     login,
     /**
      * Function to register a new user.
+     *
      * It sends a request to the server with user registration data and updates the state.
      */
     register,
     /**
      * Function to log the user out.
+     *
      * It clears the user session and updates the state.
      */
     logout,
     /**
      * Function to get the user data.
+     *
      * It fetches the user details from the server and updates the state.
      */
     getUser,
     /**
      * Function to initialize the state.
+     *
      * It can be used to set up the initial user state.
      */
     initState,
