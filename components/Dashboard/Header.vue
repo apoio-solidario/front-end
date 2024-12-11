@@ -3,7 +3,7 @@
 <template>
   <header>
     <div class="container">
-      <Logo class="header-logo" />
+      <h3>Painel</h3>
     </div>
   </header>
 </template>
@@ -18,7 +18,6 @@ header {
   position: fixed;
   top: 0;
   background-color: var(--color-background);
-  z-index: 99;
   border: 1px solid var(--color-surface);
 }
 
@@ -32,7 +31,22 @@ header {
   position: relative;
 }
 
+.container h3 {
+  height: 100%;
+  width: 100%;
+  align-content: center;
+  margin: 0;
+}
+
 @media (max-width: 1024px) {
+  header {
+    margin-left: 0;
+  }
+
+  .container h3 {
+    text-align: center;
+  }
+
   .header-logo {
     display: none;
   }

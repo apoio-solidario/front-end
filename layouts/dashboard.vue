@@ -1,10 +1,12 @@
 <template>
   <div class="dashboard">
-    <DashboardHeader />
     <DashboardSidebar />
     <main>
       <div class="dashboard-container">
-        <slot />
+        <DashboardHeader />
+        <div class="dashboard-content">
+          <slot />
+        </div>
       </div>
     </main>
   </div>
@@ -12,10 +14,11 @@
 
 <style scoped>
 main {
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background-color: var(--color-surface);
   margin: 0;
+  padding: 0;
 }
 
 .dashboard {
@@ -23,10 +26,13 @@ main {
 }
 
 .dashboard-container {
-  height: inherit;
-  width: inherit;
-  margin-top: calc(var(--header-height) + 2rem);
+  width: 100%;
+  margin: calc(var(--header-height) + 2rem) 0 2rem 0;
+}
+
+.dashboard-content {
   background-color: white;
   border-radius: var(--border-radius-md);
+  margin: 0 var(--screen-min-width-padding);
 }
 </style>
