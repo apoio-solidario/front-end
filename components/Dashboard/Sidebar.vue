@@ -19,17 +19,19 @@ const menuItems = (): MenuItem[] => {
     { name: 'Campanhas', link: '/app/campanhas/', icon: 'mdi:loudspeaker-outline', roles: ['ADMIN', 'ONG'] },
     { name: 'Eventos', link: '/app/eventos/', icon: 'mdi:calendar', roles: ['ADMIN', 'ONG'] },
     { name: 'ONGs', link: '/app/ongs/', icon: 'mdi:hand-heart', roles: ['ADMIN'] },
-    { name: 'Opiniões', link: '/app/opinioes/', icon: 'mdi:chat', roles: ['ADMIN'] },
-    { name: 'Contatos', link: '/app/contatos/', icon: 'mdi:contact', roles: ['ADMIN'] },
-    { name: 'Imagens', link: '/app/imagens/', icon: 'mdi:images-outline', roles: ['ADMIN', 'ONG'] },
+    // { name: 'Opiniões', link: '/app/opinioes/', icon: 'mdi:chat', roles: ['ADMIN', 'ONG'] },
+    // { name: 'Contatos', link: '/app/contatos/', icon: 'mdi:contact', roles: ['ADMIN'] },
+    // { name: 'Imagens', link: '/app/imagens/', icon: 'mdi:images-outline', roles: ['ADMIN', 'ONG'] },
+    { name: 'Usuários', link: '/app/usuarios/', icon: 'mdi:user-group', roles: ['ADMIN'] },
   ];
 
   return menuItems.filter(item => item.roles.includes(state.value.user!.role));
 }
 
 async function logoutAction() {
-  await logout();
-  await navigateTo("/app/login/");
+  logout().then(() => {
+    navigateTo("/app/login/")
+  });
 }
 
 const toggleSidebar = () => {
@@ -95,9 +97,13 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+.sidebar-container {
+  position: initial;
+}
+
 .sidebar {
-  height: 100vh;
-  position: fixed;
+  height: 100%;
+  min-height: 100vh;
   left: -250px;
   width: 16rem;
   background-color: var(--color-background);
@@ -172,6 +178,10 @@ onBeforeUnmount(() => {
 }
 
 @media (min-width: 1024px) {
+  .sidebar-container {
+    position: fixed;
+  }
+
   .sidebar {
     left: 0;
     position: relative;

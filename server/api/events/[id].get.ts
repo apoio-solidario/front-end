@@ -6,7 +6,7 @@ export default defineHandler(async (event) => {
   const id = getRouterParam(event, "id");
 
   try {
-    return await event.$fetch("/campaigns" + id, {
+    return await event.$fetch("/events" + id, {
       baseURL: config.AS_API,
     });
   } catch (e: any) {

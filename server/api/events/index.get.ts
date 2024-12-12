@@ -1,13 +1,16 @@
-import { createError, getRouterParam, useRuntimeConfig } from "#imports";
+import { createError, getQuery, useRuntimeConfig } from "#imports";
 import { defineHandler } from "~/server/utils/defineHandler";
 
 export default defineHandler(async (event) => {
   const config = useRuntimeConfig(event);
-  const id = getRouterParam(event, "id");
+  const query = getQuery(event);
 
   try {
-    return await event.$fetch("/campaigns" + id, {
+    return await $fetch("/events", {
       baseURL: config.AS_API,
+      params: {
+        ...query,
+      },
     });
   } catch (e: any) {
     const status = e.status || 500;

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useToast } from 'primevue/usetoast';
-import type { Campaign } from '~/shared/types/campaign';
+import type { Event } from '~/shared/types/event';
 import type { ONG } from '~/shared/types/ong';
 
 definePageMeta({
@@ -12,7 +12,7 @@ const { state } = useAuth()
 
 const toast = useToast();
 
-const campaign = ref<Campaign | undefined>();
+const event = ref<Event | undefined>();
 const selected = ref();
 const openEditDialog = ref(false);
 const openDeleteDialog = ref(false);
@@ -20,20 +20,20 @@ const openNewDialog = ref(false);
 const startDate = ref()
 const endDate = ref()
 
-const { data: campaigns } = await useLazyFetch<Campaign[]>('/api/campaigns');
+const { data: events } = await useLazyFetch<Event[]>('/api/events');
 const { data: ongs } = await useLazyFetch<ONG[]>('/api/ongs');
 
-function deleteCampaign(item: Campaign) {
-  campaign.value = item;
+function deleteevent(item: Event) {
+  event.value = item;
   openDeleteDialog.value = true;
 }
 
-async function deleteCampaignConfirm() {
+async function deleteeventConfirm() {
   try {
     const headers = useRequestHeaders(['cookie']);
-    await $fetch(`/api/campaigns/${campaign.value?.campaign_id}`, { method: 'DELETE', headers });
-    campaigns.value = campaigns.value!.filter((val) => val.campaign_id !== campaign.value!.campaign_id);
-    toast.add({ severity: 'success', summary: 'Deletado com sucesso', detail: campaign.value?.title, life: 3000 });
+    await $fetch(`/api/events/${event.value?.event_id}`, { method: 'DELETE', headers });
+    events.value = events.value!.filter((val) => val.event_id !== event.value!.event_id);
+    toast.add({ severity: 'success', summary: 'Deletado com sucesso', detail: event.value?.title, life: 3000 });
   } catch (e: any) {
     toast.add({ severity: 'error', summary: 'Erro ao deletar', detail: e.message, life: 3000 });
   }
@@ -41,46 +41,47 @@ async function deleteCampaignConfirm() {
 }
 
 async function openNew() {
-  campaign.value = {
-    campaign_id: 0,
+  event.value = {
+    event_id: '',
     title: '',
     description: '',
     content: '',
-    goal_amount: 0,
-    amount_raised: 0,
     image_profile: '',
-    image_banner: '',
-    status: 'Active',
-    ong_id: '',
-    feedbacks: [],
-    created_at: '',
-    updated_at: '',
+    banner_profile: '',
     start_data: '',
     end_data: '',
+    handler: '',
+    status: 'Active',
+    ong_id: '',
+    created_at: '',
+    updated_at: '',
   }
 
   openNewDialog.value = true;
 }
 
-async function saveCampaign() {
-  try {
-    campaign.value!.end_data = endDate.value;
-    campaign.value!.start_data = startDate.value;
+async function saveevent() {
 
-    if (!campaign.value?.ong_id && state.value.user!.role === 'ONG') {
+  console.log(ongs)
+
+  try {
+    event.value!.end_data = endDate.value;
+    event.value!.start_data = startDate.value;
+
+    if (!event.value?.ong_id && state.value.user!.role === 'ONG') {
       console.log(ongs.value!.filter((e) => {
         console.log(e.user_id === state.value.user!.user_id)
         console.log(e.user_id)
         console.log(state.value.user!.user_id)
         return e.user_id === state.value.user!.user_id;
       }))
-      campaign.value!.ong_id = ongs.value!.filter((e) => e.user_id === state.value.user!.user_id)[0].ong_id
+      event.value!.ong_id = ongs.value!.filter((e) => e.user_id === state.value.user!.user_id)[0].ong_id
     }
 
     const headers = useRequestHeaders(['cookie']);
-    await $fetch(`/api/campaigns`, { method: 'POST', headers, body: JSON.stringify(campaign.value) });
-    campaigns.value?.push(campaign.value!);
-    toast.add({ severity: 'success', summary: 'Deletado com sucesso', detail: campaign.value?.title, life: 3000 });
+    await $fetch(`/api/events`, { method: 'POST', headers, body: JSON.stringify(event.value) });
+    events.value?.push(event.value!);
+    toast.add({ severity: 'success', summary: 'Deletado com sucesso', detail: event.value?.title, life: 3000 });
   } catch (e: any) {
     toast.add({ severity: 'error', summary: 'Erro ao deletar', detail: e.message, life: 3000 });
   }
@@ -90,21 +91,21 @@ async function saveCampaign() {
 </script>
 
 <template>
-  <div class="dashboard-campaigns">
+  <div class="dashboard-events">
     <Toast />
 
-    <Toolbar class="dashboard-campaigns-header">
+    <Toolbar class="dashboard-events-header">
       <template #start>
-        <h3 class="dashboard-campaigns-header-title">Campanhas</h3>
+        <h3 class="dashboard-events-header-title">Eventos</h3>
       </template>
 
       <template #end>
-        <div class="dashboard-campaigns-header-actions">
-          <button class="dashboard-campaigns-header-action" @click="openNew">
+        <div class="dashboard-events-header-actions">
+          <button class="dashboard-events-header-action" @click="openNew">
             <Icon name="mdi:plus" />
             Adicionar
           </button>
-          <button class="dashboard-campaigns-header-action" :disabled="!selected || !selected.length">
+          <button class="dashboard-events-header-action" :disabled="!selected || !selected.length">
             <Icon name="mdi:delete-outline" />
             Deletar
           </button>
@@ -112,8 +113,8 @@ async function saveCampaign() {
       </template>
     </Toolbar>
 
-    <div class="dashboard-campaigns-grid">
-      <DataTable v-model:selection="selected" :value="campaigns" stripedRows :rowHover=true class="recent-grid-rounded">
+    <div class="dashboard-events-grid">
+      <DataTable v-model:selection="selected" :value="events" stripedRows :rowHover=true class="recent-grid-rounded">
         <Column selectionMode="multiple" style="width: 3rem"></Column>
         <Column field="title" header="Nome"></Column>
         <Column field="description" header="Descrição"></Column>
@@ -131,7 +132,7 @@ async function saveCampaign() {
                 <Icon name="mdi:edit" />
               </button>
               <button class="recent-grid-actions-button">
-                <Icon name="mdi:delete" @click="deleteCampaign(slotProps.data)" />
+                <Icon name="mdi:delete" @click="deleteevent(slotProps.data)" />
               </button>
             </div>
           </template>
@@ -158,11 +159,11 @@ async function saveCampaign() {
     <Dialog v-model:visible="openDeleteDialog" :style="{ width: '450px' }" header="Confirmação" :modal="true">
       <div class="flex items-center gap-4">
         <i class="pi pi-exclamation-triangle !text-3xl" />
-        <span v-if="campaign">Tem certeza que quer deletar a campanha: <b>{{ campaign.title }}</b>?</span>
+        <span v-if="event">Tem certeza que quer deletar a campanha: <b>{{ event.title }}</b>?</span>
       </div>
       <template #footer>
         <Button label="No" icon="pi pi-times" text @click="openDeleteDialog = false" />
-        <Button label="Yes" icon="pi pi-check" @click="deleteCampaignConfirm" />
+        <Button label="Yes" icon="pi pi-check" @click="deleteeventConfirm" />
       </template>
     </Dialog>
 
@@ -170,24 +171,24 @@ async function saveCampaign() {
       <div class="new-dialog">
         <div class="new-dialog-field">
           <label for="title">Nome</label>
-          <InputText id="title" v-model="campaign!.title" required="true" autofocus fluid />
-          <small v-if="!campaign?.title" class="text-red-500">Nome é obrigatório</small>
+          <InputText id="title" v-model="event!.title" required="true" autofocus fluid />
+          <small v-if="!event?.title" class="text-red-500">Nome é obrigatório</small>
         </div>
         <div class="new-dialog-field" v-if="state.user?.role === 'ADMIN'">
           <label for="ong_id">ONG</label>
-          <Select v-model="campaign!.ong_id" :options="ongs!" optionLabel="name" option-value="ong_id"
+          <Select v-model="event!.ong_id" :options="ongs!" optionLabel="name" option-value="user_id"
             placeholder="Selecione uma ONG" checkmark :highlightOnSelect="false" class="w-full md:w-56" />
-          <small v-if="!campaign?.ong_id" class="text-red-500">ONG é obrigatória</small>
+          <small v-if="!event?.ong_id" class="text-red-500">ONG é obrigatória</small>
         </div>
         <div class="new-dialog-field">
           <label for="description">Descrição</label>
-          <Textarea id="description" v-model="campaign!.description" required="true" rows="2" cols="20" fluid />
-          <small v-if="!campaign?.description" class="text-red-500">Descrição é obrigatória</small>
+          <Textarea id="description" v-model="event!.description" required="true" rows="2" cols="20" fluid />
+          <small v-if="!event?.description" class="text-red-500">Descrição é obrigatória</small>
         </div>
         <div class="new-dialog-field">
           <label for="content">Conteúdo</label>
-          <Textarea id="content" v-model="campaign!.content" required="true" rows="8" cols="20" fluid />
-          <small v-if="!campaign?.content" class="text-red-500">Conteúdo é obrigatório</small>
+          <Textarea id="content" v-model="event!.content" required="true" rows="8" cols="20" fluid />
+          <small v-if="!event?.content" class="text-red-500">Conteúdo é obrigatório</small>
         </div>
         <div class="new-dialog-field">
           <label for="start_date">Data de inicio</label>
@@ -202,7 +203,7 @@ async function saveCampaign() {
       </div>
       <template #footer>
         <Button label="Cancelar" icon="pi pi-times" text @click="openNewDialog = false" />
-        <Button label="Salvar" icon="pi pi-check" @click="saveCampaign" />
+        <Button label="Salvar" icon="pi pi-check" @click="saveevent" />
       </template>
     </Dialog>
   </div>
@@ -221,18 +222,18 @@ async function saveCampaign() {
   gap: 1rem;
 }
 
-.dashboard-campaigns {
+.dashboard-events {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.dashboard-campaigns-header {
+.dashboard-events-header {
   border-radius: var(--border-radius-md) !important;
   border: 1px solid var(--p-datatable-header-cell-border-color) !important;
 }
 
-.dashboard-campaigns-header-title {
+.dashboard-events-header-title {
   margin: 0;
 }
 
@@ -265,7 +266,7 @@ async function saveCampaign() {
 }
 
 .recent-grid-actions-button,
-.dashboard-campaigns-header-action {
+.dashboard-events-header-action {
   border-radius: var(--border-radius-sm);
   padding: var(--spacing-sm) var(--spacing-sm);
   background-color: transparent;
@@ -278,12 +279,12 @@ async function saveCampaign() {
   font-size: 0.9em;
 }
 
-.dashboard-campaigns-header-actions {
+.dashboard-events-header-actions {
   display: flex;
   gap: 1rem;
 }
 
-.dashboard-campaigns-header-action {
+.dashboard-events-header-action {
   display: flex;
   flex-direction: row;
   color: var(--color-primary-text);
@@ -291,7 +292,7 @@ async function saveCampaign() {
   padding: var(--spacing-sm-2) var(--spacing-sm-2);
 }
 
-.dashboard-campaigns {
+.dashboard-events {
   height: 100%;
   width: 100%;
   padding: var(--spacing-md);

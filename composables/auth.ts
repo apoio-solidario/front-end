@@ -29,7 +29,7 @@ export const useAuth = () => {
         headers,
       });
 
-      _setState(res);
+      return await _setState(res);
     } catch (e: any) {
       error.value = buildError(e);
     }
@@ -54,7 +54,7 @@ export const useAuth = () => {
         headers,
       });
 
-      _clearState();
+      return await _clearState();
     } catch (e: any) {
       console.log("logout/error", e);
       error.value = buildError(e);
@@ -70,7 +70,7 @@ export const useAuth = () => {
       return;
     }
 
-    _setState(user!);
+    await _setState(user!);
   }
 
   async function getUser() {
@@ -89,14 +89,14 @@ export const useAuth = () => {
     error.value = null;
   }
 
-  function _clearState() {
+  async function _clearState() {
     state.value = {
       isLoggedIn: false,
       user: undefined,
     };
   }
 
-  function _setState(user: User) {
+  async function _setState(user: User) {
     state.value = {
       isLoggedIn: true,
       user,

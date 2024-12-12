@@ -1,7 +1,7 @@
 import { createError, getQuery, useRuntimeConfig } from "#imports";
-import { defineCachedHandler } from "~/server/utils/defineCachedHandler";
+import { defineHandler } from "~/server/utils/defineHandler";
 
-export default defineCachedHandler(async (event) => {
+export default defineHandler(async (event) => {
   const config = useRuntimeConfig(event);
   const query = getQuery(event);
 

@@ -19,6 +19,8 @@ header {
   top: 0;
   background-color: var(--color-background);
   border: 1px solid var(--color-surface);
+  margin-left: 16rem;
+  z-index: 99;
 }
 
 .container {

@@ -1,22 +1,17 @@
-import type { Campaign } from "./campaign";
-import type { Image } from "./image";
-import type { Social } from "./social";
-
 export interface ONG {
-  id: number;
   name: string;
   description: string;
-  website_url: string;
+  content: string;
   email: string;
   phone: string;
-  image_banner: string;
-  image_profile: string;
   status: string;
   category: string;
-  images: Image[];
-  socials: Social[];
-  campaigns: Campaign[];
-  events: Event[];
+  handler: string;
+  ong_id: string;
+  website_url: string;
+  image_profile: string;
+  image_banner: string;
+  user_id: string;
   created_at: string;
   updated_at: string;
 }

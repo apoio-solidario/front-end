@@ -49,6 +49,9 @@
   --screen-min-width-padding: 2rem;
   --card-min-padding: 1rem;
   --card-max-width: 410px;
+
+  /* PrimeVue */
+  --p-datatable-header-cell-border-color: var(--color-border) !important;
 }
 
 :root[data-theme="dark"] {
@@ -126,6 +129,11 @@ button {
 
 button:hover {
   background-color: var(--color-secondary);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 a {

@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import { useToast } from 'primevue/usetoast';
+import type { User } from '~/shared/types/auth/user';
 import type { Campaign } from '~/shared/types/campaign';
 import type { ONG } from '~/shared/types/ong';
 
 definePageMeta({
-  middleware: 'authenticated',
+  middleware: ['authenticated', 'admin-only'],
   layout: 'dashboard',
 });
 
@@ -12,7 +13,7 @@ const { state } = useAuth()
 
 const toast = useToast();
 
-const campaign = ref<Campaign | undefined>();
+const campaign = ref<ONG | undefined>();
 const selected = ref();
 const openEditDialog = ref(false);
 const openDeleteDialog = ref(false);
@@ -20,43 +21,43 @@ const openNewDialog = ref(false);
 const startDate = ref()
 const endDate = ref()
 
-const { data: campaigns } = await useLazyFetch<Campaign[]>('/api/campaigns');
 const { data: ongs } = await useLazyFetch<ONG[]>('/api/ongs');
+const { data: users } = await useLazyFetch<User[]>('/api/users');
 
 function deleteCampaign(item: Campaign) {
-  campaign.value = item;
-  openDeleteDialog.value = true;
+  //   campaign.value = item;
+  //   openDeleteDialog.value = true;
 }
 
 async function deleteCampaignConfirm() {
-  try {
-    const headers = useRequestHeaders(['cookie']);
-    await $fetch(`/api/campaigns/${campaign.value?.campaign_id}`, { method: 'DELETE', headers });
-    campaigns.value = campaigns.value!.filter((val) => val.campaign_id !== campaign.value!.campaign_id);
-    toast.add({ severity: 'success', summary: 'Deletado com sucesso', detail: campaign.value?.title, life: 3000 });
-  } catch (e: any) {
-    toast.add({ severity: 'error', summary: 'Erro ao deletar', detail: e.message, life: 3000 });
-  }
-  openDeleteDialog.value = false;
+  //   try {
+  //     const headers = useRequestHeaders(['cookie']);
+  //     await $fetch(`/api/campaigns/${campaign.value?.campaign_id}`, { method: 'DELETE', headers });
+  //     campaigns.value = campaigns.value!.filter((val) => val.campaign_id !== campaign.value!.campaign_id);
+  //     toast.add({ severity: 'success', summary: 'Deletado com sucesso', detail: campaign.value?.title, life: 3000 });
+  //   } catch (e: any) {
+  //     toast.add({ severity: 'error', summary: 'Erro ao deletar', detail: e.message, life: 3000 });
+  //   }
+  //   openDeleteDialog.value = false;
 }
 
 async function openNew() {
   campaign.value = {
-    campaign_id: 0,
-    title: '',
+    name: '',
     description: '',
     content: '',
-    goal_amount: 0,
-    amount_raised: 0,
+    email: '',
+    phone: '',
+    status: 'Active',
+    category: '',
+    handler: '',
+    ong_id: '',
+    website_url: '',
     image_profile: '',
     image_banner: '',
-    status: 'Active',
-    ong_id: '',
-    feedbacks: [],
+    user_id: '',
     created_at: '',
     updated_at: '',
-    start_data: '',
-    end_data: '',
   }
 
   openNewDialog.value = true;
@@ -64,23 +65,10 @@ async function openNew() {
 
 async function saveCampaign() {
   try {
-    campaign.value!.end_data = endDate.value;
-    campaign.value!.start_data = startDate.value;
-
-    if (!campaign.value?.ong_id && state.value.user!.role === 'ONG') {
-      console.log(ongs.value!.filter((e) => {
-        console.log(e.user_id === state.value.user!.user_id)
-        console.log(e.user_id)
-        console.log(state.value.user!.user_id)
-        return e.user_id === state.value.user!.user_id;
-      }))
-      campaign.value!.ong_id = ongs.value!.filter((e) => e.user_id === state.value.user!.user_id)[0].ong_id
-    }
-
     const headers = useRequestHeaders(['cookie']);
-    await $fetch(`/api/campaigns`, { method: 'POST', headers, body: JSON.stringify(campaign.value) });
-    campaigns.value?.push(campaign.value!);
-    toast.add({ severity: 'success', summary: 'Deletado com sucesso', detail: campaign.value?.title, life: 3000 });
+    await $fetch(`/api/ongs`, { method: 'POST', headers, body: JSON.stringify(campaign.value) });
+    ongs.value?.push(campaign.value!);
+    toast.add({ severity: 'success', summary: 'Salvo com sucesso', life: 3000 });
   } catch (e: any) {
     toast.add({ severity: 'error', summary: 'Erro ao deletar', detail: e.message, life: 3000 });
   }
@@ -95,7 +83,7 @@ async function saveCampaign() {
 
     <Toolbar class="dashboard-campaigns-header">
       <template #start>
-        <h3 class="dashboard-campaigns-header-title">Campanhas</h3>
+        <h3 class="dashboard-campaigns-header-title">ONGs</h3>
       </template>
 
       <template #end>
@@ -113,27 +101,19 @@ async function saveCampaign() {
     </Toolbar>
 
     <div class="dashboard-campaigns-grid">
-      <DataTable v-model:selection="selected" :value="campaigns" stripedRows :rowHover=true class="recent-grid-rounded">
+      <DataTable v-model:selection="selected" :value="ongs" stripedRows :rowHover=true class="recent-grid-rounded">
         <Column selectionMode="multiple" style="width: 3rem"></Column>
-        <Column field="title" header="Nome"></Column>
+        <Column field="ong_id" header="ID"></Column>
+        <Column field="name" header="Nome"></Column>
         <Column field="description" header="Descrição"></Column>
-        <Column field="start_data" header="Data de Início"></Column>
-        <Column field="end_data" header="Data Final"></Column>
+        <Column field="email" header="Email"></Column>
+        <Column field="phone" header="Telefone"></Column>
+        <Column field="email" header="Email"></Column>
+        <Column field="category" header="Categoria"></Column>
+        <Column field="website_url" header="Website"></Column>
         <Column header="Status" field="status" :filterMenuStyle="{ width: '14rem' }">
           <template #body="{ data }">
             <Tag :value="data.status" severity="info" />
-          </template>
-        </Column>
-        <Column :exportable="false">
-          <template #body="slotProps">
-            <div class="recent-grid-actions">
-              <button class="recent-grid-actions-button" @click="openEditDialog = true">
-                <Icon name="mdi:edit" />
-              </button>
-              <button class="recent-grid-actions-button">
-                <Icon name="mdi:delete" @click="deleteCampaign(slotProps.data)" />
-              </button>
-            </div>
           </template>
         </Column>
       </DataTable>
@@ -158,7 +138,7 @@ async function saveCampaign() {
     <Dialog v-model:visible="openDeleteDialog" :style="{ width: '450px' }" header="Confirmação" :modal="true">
       <div class="flex items-center gap-4">
         <i class="pi pi-exclamation-triangle !text-3xl" />
-        <span v-if="campaign">Tem certeza que quer deletar a campanha: <b>{{ campaign.title }}</b>?</span>
+        <span v-if="campaign">Tem certeza que quer deletar a campanha: <b>{{ campaign.name }}</b>?</span>
       </div>
       <template #footer>
         <Button label="No" icon="pi pi-times" text @click="openDeleteDialog = false" />
@@ -169,18 +149,12 @@ async function saveCampaign() {
     <Dialog v-model:visible="openNewDialog" :style="{ width: '450px' }" header="Nova Campanha" :modal="true">
       <div class="new-dialog">
         <div class="new-dialog-field">
-          <label for="title">Nome</label>
-          <InputText id="title" v-model="campaign!.title" required="true" autofocus fluid />
-          <small v-if="!campaign?.title" class="text-red-500">Nome é obrigatório</small>
-        </div>
-        <div class="new-dialog-field" v-if="state.user?.role === 'ADMIN'">
-          <label for="ong_id">ONG</label>
-          <Select v-model="campaign!.ong_id" :options="ongs!" optionLabel="name" option-value="ong_id"
-            placeholder="Selecione uma ONG" checkmark :highlightOnSelect="false" class="w-full md:w-56" />
-          <small v-if="!campaign?.ong_id" class="text-red-500">ONG é obrigatória</small>
+          <label for="name">Nome</label>
+          <InputText id="name" v-model="campaign!.name" required="true" autofocus />
+          <small v-if="!campaign?.name" class="text-red-500">Nome é obrigatório</small>
         </div>
         <div class="new-dialog-field">
-          <label for="description">Descrição</label>
+          <label for="description">Description</label>
           <Textarea id="description" v-model="campaign!.description" required="true" rows="2" cols="20" fluid />
           <small v-if="!campaign?.description" class="text-red-500">Descrição é obrigatória</small>
         </div>
@@ -190,14 +164,20 @@ async function saveCampaign() {
           <small v-if="!campaign?.content" class="text-red-500">Conteúdo é obrigatório</small>
         </div>
         <div class="new-dialog-field">
-          <label for="start_date">Data de inicio</label>
-          <DatePicker v-model="startDate" showIcon fluid :showOnFocus="false" />
-          <small v-if="!startDate" class="text-red-500">Data incial é obrigatória</small>
+          <label for="email">Email</label>
+          <InputText id="email" v-model="campaign!.email" required="true" autofocus />
+          <small v-if="!campaign?.email" class="text-red-500">Email é obrigatório</small>
         </div>
         <div class="new-dialog-field">
-          <label for="end_date">Data final</label>
-          <DatePicker v-model="endDate" showIcon fluid :showOnFocus="false" />
-          <small v-if="!endDate" class="text-red-500">Data final é obrigatória</small>
+          <label for="category">Categoria</label>
+          <InputText id="category" v-model="campaign!.category" required="true" autofocus />
+          <small v-if="!campaign?.category" class="text-red-500">Categoria é obrigatória</small>
+        </div>
+        <div class="new-dialog-field">
+          <label for="ong_id">Usuário</label>
+          <Select v-model="campaign!.user_id" :options="users!" optionLabel="username" option-value="user_id"
+            placeholder="Selecione uma ONG" checkmark :highlightOnSelect="false" class="w-full md:w-56" />
+          <small v-if="!campaign?.user_id" class="text-red-500">Usuário é obrigatório</small>
         </div>
       </div>
       <template #footer>

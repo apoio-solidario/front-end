@@ -14,7 +14,8 @@
 
 <style scoped>
 main {
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   width: 100%;
   background-color: var(--color-surface);
   margin: 0;
@@ -34,5 +35,12 @@ main {
   background-color: white;
   border-radius: var(--border-radius-md);
   margin: 0 var(--screen-min-width-padding);
+  margin-left: 18rem;
+}
+
+@media (max-width: 1024px) {
+  .dashboard-content {
+    margin: 0 calc(var(--screen-min-width-padding) - 1rem);
+  }
 }
 </style>

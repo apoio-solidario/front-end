@@ -1,13 +1,15 @@
-import { createError, getRouterParam, useRuntimeConfig } from "#imports";
+import { createError, useRuntimeConfig } from "#imports";
 import { defineHandler } from "~/server/utils/defineHandler";
 
 export default defineHandler(async (event) => {
   const config = useRuntimeConfig(event);
-  const id = getRouterParam(event, "id");
+  const body = await readBody(event);
 
   try {
-    return await event.$fetch("/campaigns" + id, {
+    return await event.$fetch("/events", {
       baseURL: config.AS_API,
+      method: "POST",
+      body,
     });
   } catch (e: any) {
     const status = e.status || 500;
