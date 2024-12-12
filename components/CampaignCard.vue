@@ -11,10 +11,10 @@ const props = defineProps<{
         <img :src="item.image_banner" alt="" class="campaign-card-image">
 
         <div class="campaign-card-content">
-            <h4 class="campaign-card-info campaign-card-local">
+            <!-- <h4 class="campaign-card-info campaign-card-local">
                 <Icon name="mdi:location" size="1em" />
                 Juazeiro do Norte - CE
-            </h4>
+            </h4> -->
             <h2 class="campaign-card-info campaign-card-title">{{ item.title }}</h2>
             <Description>
                 {{ item.description }}
@@ -22,7 +22,7 @@ const props = defineProps<{
         </div>
 
         <div class="campaign-card-actions">
-            <PrimaryLink href="/" title="Ver mais sobre essa campanha" class="campaign-card-action">
+            <PrimaryLink :href="item.handler" title="Ver mais sobre essa campanha" class="campaign-card-action">
                 Ver Mais
             </PrimaryLink>
             <IconLink href="/" title="Salvar campanha" icon="mdi:cards-heart-outline" class="campaign-card-action" />

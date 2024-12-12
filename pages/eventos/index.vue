@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Event } from '~/shared/types/event';
 
-const eventos: Event[] = []
+const { data: events } = useLazyFetch<Event[]>('/api/events')
 
 useSeoMeta({
   title: 'Eventos | Apoio Solidário',
@@ -13,9 +13,13 @@ useSeoMeta({
 </script>
 
 <template>
-  <CardList>
-    <EventCard v-for="(item, index) in eventos" :item="item" :index="index" :key="item.id" />
+  <CardList v-if="events">
+    <EventCard v-for="(item, index) in events" :item="item" :index="index" :key="item.event_id" />
   </CardList>
+  <div v-else>
+    <ProgressSpinner style="width: 50px; height: 50px" strokeWidth="8" fill="transparent" animationDuration=".5s"
+      aria-label="Custom ProgressSpinner" />
+  </div>
 </template>
 
 <style></style>

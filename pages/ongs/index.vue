@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ONG } from '~/shared/types/ong';
 
-const ongs: ONG[] = []
+const { data: ongs } = useLazyFetch<ONG[]>('/api/events')
 
 useSeoMeta({
   title: 'ONGs | Apoio Solidário',
@@ -13,9 +13,13 @@ useSeoMeta({
 </script>
 
 <template>
-  <CardList>
-    <ONGCard v-for="(item, index) in ongs" :item="item" :index="index" :key="item.id" />
+  <CardList v-if="ongs">
+    <ONGCard v-for="(item, index) in ongs" :item="item" :index="index" :key="item.ong_id" />
   </CardList>
+  <div v-else>
+    <ProgressSpinner style="width: 50px; height: 50px" strokeWidth="8" fill="transparent" animationDuration=".5s"
+      aria-label="Custom ProgressSpinner" />
+  </div>
 </template>
 
 <style></style>

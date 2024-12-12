@@ -8,6 +8,7 @@
 
 <style>
 .card-list {
+  margin-top: 10rem;
   width: 100%;
   max-width: var(--max-width);
   display: grid;

@@ -2,7 +2,7 @@
 import { useLazyFetch } from '#app';
 import type { Campaign } from '~/shared/types/campaign';
 
-const { data: campaigns, status } = useLazyFetch<Campaign[]>('/api/campaigns')
+const { data: campaigns } = useLazyFetch<Campaign[]>('/api/campaigns')
 
 useSeoMeta({
   title: 'Campanhas | Apoio Solidário',
@@ -14,9 +14,13 @@ useSeoMeta({
 </script>
 
 <template>
-  <CardList>
-    <CampaignCard v-for="(item, index) in campaigns" :item="item" :index="index" :key="item.id" />
+  <CardList v-if="campaigns">
+    <CampaignCard v-for="(item, index) in campaigns" :item="item" :index="index" :key="item.campaign_id" />
   </CardList>
+  <div v-else>
+    <ProgressSpinner style="width: 50px; height: 50px" strokeWidth="8" fill="transparent" animationDuration=".5s"
+      aria-label="Custom ProgressSpinner" />
+  </div>
 </template>
 
 <style></style>

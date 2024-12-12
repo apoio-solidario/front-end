@@ -10,6 +10,7 @@ export interface Campaign {
   goal_amount: number;
   amount_raised: number;
   image_profile: string;
+  handler: string;
   image_banner: string;
   status: string;
   ong_id: string;

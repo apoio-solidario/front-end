@@ -8,7 +8,7 @@ const props = defineProps<{
 
 <template>
     <div class="event-card">
-        <img src="https://picsum.photos/1200/630" alt="" class="event-card-image">
+        <img :src="item.banner_profile" alt="" class="event-card-image">
 
         <div class="event-card-content">
             <h2>{{ item.title }}</h2>

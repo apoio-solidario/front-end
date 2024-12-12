@@ -65,22 +65,6 @@ useSeoMeta({
             <h3 class="campaign-description-title">Descrição</h3>
             <hr>
             <article class="campaign-description-article">
-              <h2>Evento Solidário - Unidos pelo Bem</h2>
-              <p>Participe do nosso evento especial e ajude a transformar vidas! Este é um momento de união,
-                solidariedade e impacto positivo na comunidade.</p>
-              <h3>📅 Informações do Evento:</h3>
-
-              <ul>
-                <li>Data: 25 de novembro de 2024</li>
-                <li>Horário: 14h às 20h</li>
-                <li>Local: Centro Comunitário Esperança, Rua Lorem Ipsum, 123 - São Paulo, SP</li>
-              </ul>
-
-              <h3>✨ Juntos, podemos fazer a diferença!</h3>
-              <p>Não perca essa oportunidade de contribuir para um futuro melhor. Venha fazer parte dessa transformação!
-                Para mais informações, entre em contato:</p>
-              <p>📧 contato@eventosolidario.com</p>
-              <p>📞 (11) 1234-5678</p>
             </article>
           </div>
         </div>
